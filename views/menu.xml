@@ -1,0 +1,6 @@
+
+<odoo>
+    <menuitem id="menu_real_estate_root" name="Real Estate Management" />
+    <menuitem id="menu_real_estate_property" name="Properties" parent="menu_real_estate_root" action="action_real_estate_property" />
+    <menuitem id="menu_partner" name="Owners" parent="menu_real_estate_root" action="action_partner" />
+</odoo> 

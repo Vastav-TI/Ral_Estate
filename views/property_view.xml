@@ -1,0 +1,49 @@
+<odoo>
+    <!-- Form view for Real Estate Property (extends product.product) -->
+    <record id="view_real_estate_property_form" model="ir.ui.view">
+        <field name="name">product.product.form.real.estate</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/> <!-- Inherit Product Form -->
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="address"/>
+                        <field name="type"/>
+                        <field name="list_price"/>
+                        <field name="area"/>
+                        <field name="state"/>
+                        <field name="description"/>
+                        <field name="image_128"/>
+                        <field name="owner_id"/>
+                    </group>
+                </sheet>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree view for Real Estate Property (extends product.product) -->
+    <record id="view_real_estate_property_tree" model="ir.ui.view">
+        <field name="name">product.product.tree.real.estate</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/> <!-- Inherit Product Tree -->
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="address"/>
+                <field name="type"/>
+                <field name="list_price"/>
+                <field name="state"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action and Menus -->
+    <record id="action_real_estate_property" model="ir.actions.act_window">
+        <field name="name">Real Estate Properties</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_real_estate_property_tree"/>
+        <field name="context">{}</field>
+    </record>
+</odoo>

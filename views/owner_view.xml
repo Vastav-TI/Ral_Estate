@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_res_partner_form_inherit_real_estate" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.real.estate</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/> <!-- Inherit Res Partner Form -->
+        <field name="arch" type="xml">
+            <notebook position="before">
+                <sheet>
+                    <group>
+                        <field name="partner_type"/>
+                        <field name="owned_property_ids"/>
+                        <!-- <field name="purchase_history_ids"/> -->
+                    </group>
+                </sheet>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Tree view for Res Partner (Owner) -->
+    <record id="view_res_partner_tree_inherit_real_estate" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherit.real.estate</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/> <!-- Inherit Res Partner Tree -->
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="before">
+                <field name="partner_type"/>
+                <field name="owned_property_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- action for owner -->
+    <record id="action_partner" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_res_partner_tree_inherit_real_estate"/>
+        <field name="context">{}</field>
+    </record>
+</odoo>
