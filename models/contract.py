@@ -25,4 +25,4 @@ from odoo import models,fields
  
 class SaleOrder(models.Model):
     _inherit='sale.order'
-    description_purchase = fields.Text(related='order_line.product_id.description_purchase', readonly=True,string="Purchase Description")
+    description_purchase = fields.Text(related='order_line.product_id.description_purchase', string="Purchase Description")

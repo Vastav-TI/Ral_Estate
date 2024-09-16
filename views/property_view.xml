@@ -79,7 +79,7 @@
                 <field name="state"/>
                 <field name="area"/>
                 <field name="owner_id" domain="[('is_owner', '=', True)]"/>
-                <field name="description"/>
+                <field name="description_purchase"/>
             </xpath>
 
             <xpath expr="//group[@name='group_general']" postion="inside">
