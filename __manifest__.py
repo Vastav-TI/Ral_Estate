@@ -13,7 +13,10 @@
         # 'security/ir.model.access.csv',
         'views/property_view.xml',
         'views/owner_view.xml',
-        'views/menu.xml'
+        'views/client_view.xml',
+        'views/tenant.xml',
+        'views/sale_view.xml',
+        'views/menu.xml',
 
     ],
     'installable': True,

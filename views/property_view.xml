@@ -5,7 +5,7 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/> <!-- Inherit Product Form -->
         <field name="arch" type="xml">
-            <xpath expr="//form" position="inside">
+            <!-- <xpath expr="//form" position="inside">
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -19,6 +19,72 @@
                         <field name="owner_id"/>
                     </group>
                 </sheet>
+            </xpath> -->
+            <xpath expr="//label[@for='name']" position="replace">
+                <label for="name" string="Property Name"/>
+            </xpath>
+            
+            <!-- hiding elements -->
+            <xpath expr="//button[@name='action_open_label_layout']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='general_information']/group[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='purchase_ok']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <!-- <attribute name="required">0</attribute> -->
+            </xpath>
+            <xpath expr="//field[@name='image_1920']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <!-- <attribute name="required">0</attribute> -->
+            </xpath>
+
+            <xpath expr="//field[@name='product_tooltip']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <!-- <attribute name="required">0</attribute> -->
+            </xpath>
+
+            <xpath expr="//field[@name='sale_ok']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <!-- <attribute name="required">0</attribute> -->
+            </xpath>
+            
+            <xpath expr="//field[@name='invoice_policy']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='detailed_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+
+
+            <!-- adding elements -->
+            <xpath expr="//div[@name='options']" position="before">
+                <label for="Is_property"/>
+                <div>
+                <field name="Is_property"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//group[@name='group_general']" position="inside">
+                <field name="property_id"/>
+                <field name="type"/>
+                <field name="address"/>
+                <field name="list_price"/>
+                <field name="state"/>
+                <field name="area"/>
+                <field name="owner_id" domain="[('is_owner', '=', True)]"/>
+                <field name="description"/>
+            </xpath>
+
+            <xpath expr="//group[@name='group_general']" postion="inside">
+                <field name="image_1920" invisible="0"/>
+                
             </xpath>
         </field>
     </record>
@@ -35,6 +101,9 @@
                 <field name="list_price"/>
                 <field name="state"/>
             </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="property_id"/>
+            </xpath>
         </field>
     </record>
 
@@ -44,6 +113,7 @@
         <field name="res_model">product.product</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_real_estate_property_tree"/>
-        <field name="context">{}</field>
+        <field name="domain">[('Is_property', '=', True)]</field>
+        <field name="context">{'default_Is_property': True}</field>
     </record>
 </odoo>

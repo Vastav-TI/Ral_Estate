@@ -1,0 +1,92 @@
+<odoo>
+    <!-- Form view for Tenants (extends res.partner) -->
+    <record id="view_res_partner_form_inherit_tenant" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.tenant</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/> <!-- Inherit Res Partner Form -->
+        <field name="arch" type="xml">
+            <!-- hiding elements -->
+            <xpath expr="//notebook" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='is_company']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@class='oe_chatter']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@class='o_row']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            
+            <!-- adding elements -->
+            <xpath expr="//sheet" position="inside">
+                <group string="Tenant Details" name="tenant_group" invisible="not is_tenant">
+                    <!-- <field name="owned_property_ids"/> -->
+                    <field name="image_1920"/>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                    <!-- <field name="is_owner"/> -->
+                </group>
+            </xpath>
+
+            <xpath expr="//group[@name='tenant_group']" position="before">
+                <label for="is_tenant" invisible="not is_tenant"/>
+                <div>
+                <field name="is_tenant" invisible="not is_tenant"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree view for Tenants (extends res.partner) -->
+    <record id="view_res_partner_tree_inherit_tenant" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherit.tenant</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/> <!-- Inherit Res Partner Tree -->
+        <field name="arch" type="xml">
+            <!-- Display Tenant boolean in tree view -->
+            <xpath expr="//field[@name='email']" position="before">
+                <field name="is_tenant"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action for Tenants -->
+    <record id="action_res_partner_tenant" model="ir.actions.act_window">
+        <field name="name">Tenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), (0, 0, {'view_mode': 'tree', 'view_id': ref('view_res_partner_tree_inherit_tenant')}), (0, 0, {'view_mode': 'form', 'view_id': ref('view_res_partner_form_inherit_tenant')})]"/>
+        <field name="domain">[('is_tenant', '=', True)]</field>
+        <field name="context">{'default_is_tenant': True}</field>
+    </record>
+</odoo>

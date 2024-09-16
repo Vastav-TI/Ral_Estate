@@ -4,15 +4,111 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/> <!-- Inherit Res Partner Form -->
         <field name="arch" type="xml">
-            <notebook position="before">
-                <sheet>
-                    <group>
-                        <field name="partner_type"/>
-                        <field name="owned_property_ids"/>
-                        <!-- <field name="purchase_history_ids"/> -->
-                    </group>
-                </sheet>
-            </notebook>
+            <xpath expr="//notebook" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='image_1920']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+            
+            <xpath expr="//field[@name='is_company']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+ 
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+ 
+ 
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+            <xpath expr="//div[@class='oe_chatter']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@class='oe_kanban_details']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+ 
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+ 
+            <xpath expr="//div[@class='o_address_format']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@class='o_row']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='mobile']" position="replace">
+                <!-- Replacing the label with nothing effectively removes it -->
+                <label for="mobile" string=""/>
+            </xpath>
+            <xpath expr="//label[@for='email']" position="replace">
+                <!-- Replacing the label with nothing effectively removes it -->
+                <label for="email" string=""/>
+            </xpath>
+            
+            
+            <!-- adding fields -->
+            <xpath expr="//sheet" position="inside">
+                <group string="Owner Details" name="owner_group" invisible="not is_owner">
+                    <field name="image_1920"/>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                    <field name="owned_property_ids"/>
+
+
+                    <!-- <field name="is_owner"/> -->
+                </group>
+                
+            </xpath>
+            <!-- <xpath expr="//label[@for='name']" position="replace">
+                <label for="name" string="Property Name"/>
+            </xpath> -->
+
+            
+            <xpath expr="//group[@name='owner_group']" position="before">
+                
+                <label for="is_owner" invisible="not is_owner"/>
+                <div>
+                <field name="is_owner" invisible="not is_owner"/>
+                </div>
+            </xpath>
+            
         </field>
     </record>
 
@@ -23,7 +119,7 @@
         <field name="inherit_id" ref="base.view_partner_tree"/> <!-- Inherit Res Partner Tree -->
         <field name="arch" type="xml">
             <xpath expr="//field[@name='email']" position="before">
-                <field name="partner_type"/>
+                <field name="is_owner"/>
                 <field name="owned_property_ids"/>
             </xpath>
         </field>
@@ -35,6 +131,6 @@
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_res_partner_tree_inherit_real_estate"/>
-        <field name="context">{}</field>
+        <field name="context">{'default_is_owner': True}</field>
     </record>
 </odoo>
