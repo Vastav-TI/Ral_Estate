@@ -10,7 +10,8 @@
     'depends': ['base', 'sale', 'product', 'contacts'],
     'data': [
         # Data files like views, actions, and security
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'views/wizard_property_action_views.xml',
         'views/property_view.xml',
         'views/owner_view.xml',
         'views/client_view.xml',

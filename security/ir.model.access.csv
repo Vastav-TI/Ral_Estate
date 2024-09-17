@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_partner_all_users,res.partner_all_users,model_res_partner,,1,1,1,1
 access_product_all_users,product.product_all_users,model_product_product,,1,1,1,1
+access_property_action_wizard,access_property_action_wizard,model_property_action_wizard,,1,1,1,1

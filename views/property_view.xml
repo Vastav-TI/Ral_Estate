@@ -1,25 +1,18 @@
 <odoo>
     <!-- Form view for Real Estate Property (extends product.product) -->
+    <record id="action_property_action_wizard" model="ir.actions.act_window">
+        <field name="name">Property Action Wizard</field>
+        <field name="res_model">property.action.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_property_action_wizard_form"/>
+        <field name="target">new</field>
+    </record>
     <record id="view_real_estate_property_form" model="ir.ui.view">
         <field name="name">product.product.form.real.estate</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/> <!-- Inherit Product Form -->
         <field name="arch" type="xml">
-            <!-- <xpath expr="//form" position="inside">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="address"/>
-                        <field name="type"/>
-                        <field name="list_price"/>
-                        <field name="area"/>
-                        <field name="state"/>
-                        <field name="description"/>
-                        <field name="image_128"/>
-                        <field name="owner_id"/>
-                    </group>
-                </sheet>
-            </xpath> -->
+            
             <xpath expr="//label[@for='name']" position="replace">
                 <label for="name" string="Property Name"/>
             </xpath>
@@ -86,6 +79,16 @@
                 <field name="image_1920" invisible="0"/>
                 
             </xpath>
+            <!-- add a header -->
+            <xpath expr="//form/header" postion="inside">
+
+                
+                    <button name="%(action_property_action_wizard)d"
+                    type="action"
+                    string="Save or Return"
+                    class="oe_highlight"/>
+                
+            </xpath>
         </field>
     </record>
 
@@ -105,6 +108,7 @@
                 <field name="property_id"/>
             </xpath>
         </field>
+
     </record>
 
     <!-- Action and Menus -->
@@ -116,4 +120,5 @@
         <field name="domain">[('Is_property', '=', True)]</field>
         <field name="context">{'default_Is_property': True}</field>
     </record>
+    <!-- adding action for the button -->
 </odoo>
