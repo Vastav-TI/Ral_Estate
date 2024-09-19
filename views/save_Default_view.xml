@@ -1,0 +1,22 @@
+<odoo>
+
+    <record id="view_property_save_wizard" model="ir.ui.view">
+        <field name="name">property.save.wizard.form</field>
+        <field name="model">property.save.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Save with Default Values">
+                <group>
+                    <field name="msg" readonly="1"/>
+                    <field name="area"/>
+                    <field name="list_price"/>
+                </group>
+                <footer>
+                    <button name="confirm_save" string="Confirm Save" type="object" class="oe_highlight"/>
+                    <!-- <button name="confirm_save_clear_default" string="Clear Defaults" type="object" class="oe_highlight"/> -->
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

@@ -87,7 +87,10 @@
                     type="action"
                     string="Save or Return"
                     class="oe_highlight"/>
-                
+                    
+                    <button string="SET Area and Price" type="object"  name="action_open_save_wizard" class="oe_highlight"/>
+
+                    <button string="get context" type="object"  name="get_context" class="oe_highlight"/>
             </xpath>
         </field>
     </record>
@@ -118,7 +121,7 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_real_estate_property_tree"/>
         <field name="domain">[('Is_property', '=', True)]</field>
-        <field name="context">{'default_Is_property': True}</field>
+        <field name="context">{'default_Is_property': True,'search_default_state': 'available', 'group_by': 'type'}</field>
     </record>
     <!-- adding action for the button -->
 </odoo>

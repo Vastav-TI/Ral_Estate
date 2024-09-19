@@ -5,3 +5,4 @@ from . import real_estate_property
 from . import contract
 from . import saleorderline
 from . import wizard_property_action
+from . import property_default_save_wizard

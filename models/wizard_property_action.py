@@ -8,14 +8,15 @@ class PropertyActionWizard(models.TransientModel):
 
     def action_save(self):
         _logger=logging.getLogger(__name__)
-        _logger.info(f"inside button logic")
-        _logger.info(f"Self:  ",self)
+        _logger.info("inside button logic")
+        _logger.info("hello")
+        _logger.info(f"Self:  {self}")
 
         active_id=self.env.context.get('active_id')
-        _logger.info(f"active id =",active_id)
+        _logger.info(f"active id ={active_id}")
         if active_id:
             record=self.env['product.product'].browse(active_id)
-            
+            _logger.info(f"record id ={record}")
             record.write({'state': 'available'})
         return {'type':'ir.actions.act_window_close'}
     
@@ -26,3 +27,4 @@ class PropertyActionWizard(models.TransientModel):
                 'res_id':self.env.context.get('active_id'),
                 'target':'current'
                 }
+    
